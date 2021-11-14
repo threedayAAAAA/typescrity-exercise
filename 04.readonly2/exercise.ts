@@ -1,20 +1,8 @@
-type MyReadonly2<T, K extends keyof T = keyof T> = {
-    readonly [key in K]: T[key]
-} & T
+type First<T extends unknown[]> = T[0]
 
 /** test case */
-// interface Todo {
-//     title: string
-//     description: string
-//     completed: boolean
-// }
-  
-// const todo: MyReadonly2<Todo, 'title' | 'description'> = {
-//     title: 'Hey',
-//     description: 'foobar',
-//     completed: false,
-// }
+type arr1 = ['a', 'b', 'c']
+type arr2 = [3, 2, 1]
 
-// todo.title = 'Hello' // Error: cannot reassign a readonly property
-// todo.description = 'barFoo' // Error: cannot reassign a readonly property
-// todo.completed = true // OK
+type head1 = First<arr1> // expected to be 'a'
+type head2 = First<arr2> // expected to be 3
